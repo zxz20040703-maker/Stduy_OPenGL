@@ -3,5 +3,6 @@ Visual Studio的链接器原理：
 
 OpenGL
   虽然我的设备均是WIndows的OP，原生支持的图形api是DircX，但是几乎所有显卡厂家的原生驱动都是基于OpenGL规范的。所以掌握好OpenGL对后续的进步大有裨益。
+  windows支持的OpenGL版本只到1.1，在windows里叫opengl32.dll（桥接器）。高版本里的函数需要手动去加载，非常繁琐。但是GLEW把这件事自动化了。因此，这个库里已经安装好了glew
 
 后续学习文档同步到文件架
