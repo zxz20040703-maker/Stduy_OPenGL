@@ -1,0 +1,1 @@
+#ifndef __glxew_h__   如果没有定义glxew_h则执行下面的代码；
