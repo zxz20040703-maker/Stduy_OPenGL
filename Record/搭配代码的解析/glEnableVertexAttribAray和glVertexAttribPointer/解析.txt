@@ -1,0 +1,2 @@
+glEnableAttribArray是开启某个通道的意思。这个顶点属性索引开启后，就能被其他地方读取。（当前上下文的该属性都会被开启）
+glVertexAttribPointer用于定义某个通道的读取方法，告诉其他地方怎么读取。

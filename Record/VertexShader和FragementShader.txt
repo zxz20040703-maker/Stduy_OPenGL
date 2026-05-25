@@ -1,0 +1,7 @@
+VertexShader是针对每个顶点的。每个顶点执行一次
+FragemenrShader是针对这个模型占据的像素的，这个模型占据的像素数量都要执行一次。
+
+所以FragmentShader的执行次数往往比VertexShader多得多，也更耗时。
+一般来说vertexshader干的事情是针对顶点的，like某些位置的偏移
+FragmentShader干的事是针对颜色的。该屏幕像素会是什么颜色，就取决于FragmentShader要干的事。
+
