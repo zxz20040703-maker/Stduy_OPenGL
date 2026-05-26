@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{E1BD4113-9293-44F6-A57F-20A51A72C18A}|OpenGL\\OpenGL.vcxproj|D:\\\u65B0\u5EFA\u6587\u4EF6\u5939\\LessonProject\\Stduy_OPenGL\\OpenGL\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E1BD4113-9293-44F6-A57F-20A51A72C18A}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\\u6E90.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1BD4113-9293-44F6-A57F-20A51A72C18A}|OpenGL\\OpenGL.vcxproj|D:\\\u65B0\u5EFA\u6587\u4EF6\u5939\\LESSONPROJECT\\STDUY_OPENGL\\DEPENDENCIES\\GLEW\\INCLUDE\\GL\\GLEW.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1BD4113-9293-44F6-A57F-20A51A72C18A}|OpenGL\\OpenGL.vcxproj|solutionrelative:DEPENDENCIES\\GLEW\\INCLUDE\\GL\\GLEW.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "glew.h",
+              "DocumentMoniker": "D:\\\u65B0\u5EFA\u6587\u4EF6\u5939\\LessonProject\\Stduy_OPenGL\\Dependencies\\GLEW\\include\\GL\\glew.h",
+              "RelativeDocumentMoniker": "Dependencies\\GLEW\\include\\GL\\glew.h",
+              "ToolTip": "D:\\\u65B0\u5EFA\u6587\u4EF6\u5939\\LessonProject\\Stduy_OPenGL\\Dependencies\\GLEW\\include\\GL\\glew.h",
+              "RelativeToolTip": "Dependencies\\GLEW\\include\\GL\\glew.h",
+              "ViewState": "AgIAAL8DAAAAAAAAAAAYwM8DAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-26T00:15:07.408Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +41,7 @@
               "RelativeDocumentMoniker": "OpenGL\\\u6E90.cpp",
               "ToolTip": "D:\\\u65B0\u5EFA\u6587\u4EF6\u5939\\LessonProject\\Stduy_OPenGL\\OpenGL\\\u6E90.cpp*",
               "RelativeToolTip": "OpenGL\\\u6E90.cpp*",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAowGUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAowI8AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-05-25T10:59:22.571Z",
               "EditorCaption": ""

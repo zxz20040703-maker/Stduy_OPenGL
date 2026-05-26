@@ -18,13 +18,11 @@ static ShaderProgramResource ParseShader(std::string filePath)
 	{
 		NONE = -1, VERTEX = 0, FRAGMENT = 1
 	};
-	std::ifstream stream(filePath);
+	std::ifstream stream(filePath);	//文件读取流
 	std::string line;
-	std::stringstream ss[2];
+	std::stringstream ss[2];	//字符串流数组
 	ShaderType type = ShaderType::NONE;
 
-	
-	std::cout << "文件打开成功" << std::endl;
 	if (stream) {
 
 		while (getline(stream, line)) {
@@ -55,13 +53,13 @@ static ShaderProgramResource ParseShader(std::string filePath)
 }
 static unsigned int CompileShader(unsigned int type, const std::string& source)
 {
-	unsigned int id = glCreateShader(type);
+	unsigned int id = glCreateShader(type);//通过glCreateShader函数创建一个新对象，返回一个唯一的id
 	const char* src = source.c_str();
-	glShaderSource(id, 1, &src, nullptr);
+	glShaderSource(id, 1, &src, nullptr);//把字符串附加给id指定的对象，nullptr表示字符串以null结尾
 	glCompileShader(id);
 
 	int result;
-	glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+	glGetShaderiv(id, GL_COMPILE_STATUS, &result);//查看编译状态
 	if (result == GL_FALSE) {
 		int length;
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
@@ -113,7 +111,7 @@ int main()
         return -1;
     } 
 
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(window);//一切函数调用都在创建上下文之后进行
 
     if(glewInit() != GLEW_OK)
     {
@@ -126,19 +124,32 @@ int main()
 
     float position[] = {
         -0.5f, -0.5f,
-         0.0f,  0.5f,
-         0.5f, -0.5f
+         0.5f,  -0.5f,
+		 0.5f, 0.5f,
+		-0.5f, 0.5f
+
 	};//在内存空间定义了一组数据，后续会发送到GPU中进行处理
+
+	unsigned int index[] = {
+				0, 1, 2,
+				2,3,0
+
+	};
+
 
     unsigned int a;
 	glGenBuffers(1, &a);
 	glBindBuffer(GL_ARRAY_BUFFER, a);//指定a缓冲区的类型为GL_ARRAY_BUFFER，并将其绑定到当前上下文中
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), position, GL_STATIC_DRAW);//将数据复制到当前绑定的缓冲区对象中，数据大小为6个float，数据来源于position数组，使用GL_STATIC_DRAW作为使用模式
-
+	glBufferData(GL_ARRAY_BUFFER, 8* sizeof(float), position, GL_STATIC_DRAW);//将数据复制到当前绑定的缓冲区对象中，数据大小为6个float，数据来源于position数组，使用GL_STATIC_DRAW作为使用模式
 	glEnableVertexAttribArray(0);//启用顶点属性数组，参数0表示启用索引值为0的顶点属性数组
-
 	//给第0个顶点属性定义读取方式
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+
+	unsigned int ibo;
+	glGenBuffers(1, &ibo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), index, GL_STATIC_DRAW);
+
 
 	ShaderProgramResource source = ParseShader("res/shaders/BasicalShader.shader");
 
@@ -147,13 +158,10 @@ int main()
 	glUseProgram(shader);
     while (!glfwWindowShouldClose(window))
     {
-		//在这里可以进行渲染操作
+	
         glClear(GL_COLOR_BUFFER_BIT);
-
-         
-		glDrawArrays(GL_TRIANGLES, 0, 3);//绘制调用。GL_TRIANGLES表示绘制模式，0表示从数组的第一个顶点开始，3表示绘制3个顶点
-
-		//交换前后缓冲区，以显示渲染结果
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		
         glfwSwapBuffers(window);
 
 		  glfwPollEvents();
