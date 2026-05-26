@@ -131,7 +131,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DrawCallData.cpp" />
+    <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="shaderer.cpp" />
     <ClCompile Include="源.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DrawCallData.h" />
+    <ClInclude Include="renderer.h" />
+    <ClInclude Include="shaderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
