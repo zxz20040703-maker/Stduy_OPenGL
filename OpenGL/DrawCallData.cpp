@@ -1,6 +1,7 @@
 #include"DrawCallData.h"
 #include"renderer.h"
 
+
 VertexBuffer::VertexBuffer(const void* data , unsigned int size )
 {
 	glGenBuffers(1, &m_RendererID);
@@ -12,11 +13,11 @@ VertexBuffer::~VertexBuffer()
 	glDeleteBuffers(1, &m_RendererID);
 }
 
-void VertexBuffer::Bind()
+void VertexBuffer::Bind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 }
-void VertexBuffer::Unbind()
+void VertexBuffer::Unbind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
@@ -39,4 +40,40 @@ void IndexBuffer::Bind()
 void IndexBuffer::Unbind()
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+
+VertexArray::VertexArray()
+{
+	glGenVertexArrays(1, &m_RendererID);
+}
+VertexArray::~VertexArray()
+{
+	glDeleteVertexArrays(1, &m_RendererID);
+}
+
+void VertexArray::Bind( )
+{
+	glBindVertexArray(m_RendererID);
+}
+
+void VertexArray::Unbind()
+{
+	glBindVertexArray(0);
+}
+void VertexArray::AddBuffer(const VertexBuffer& vbo  ,const ElementsLayout& layout )
+{
+	this->Bind();
+	vbo.Bind();
+	unsigned int offset = 0;
+
+	auto& contain = layout.GetContain();
+	for (int i = 0; i < contain.size(); i++) 
+	{
+		auto& element = contain[i];
+		glEnableVertexAttribArray(i);
+		glVertexAttribPointer( i ,element.count ,element.type , element.isnormalization , layout.GetStride(), (const void*)offset);
+		offset += element.count * Element::GetSizeOfType(element.type);
+	}
+
 }

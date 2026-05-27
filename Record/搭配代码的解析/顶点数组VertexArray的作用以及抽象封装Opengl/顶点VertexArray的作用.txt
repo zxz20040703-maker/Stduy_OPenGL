@@ -1,0 +1,1 @@
+一个VertexArray对应一个VBO，但一个VBO里的数据可以是多样的

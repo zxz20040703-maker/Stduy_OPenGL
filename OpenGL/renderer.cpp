@@ -1,7 +1,5 @@
 #include"renderer.h"
 
-
-
 void __stdcall debugCallback(GLenum source, GLenum type, GLuint id,GLenum severity, GLsizei length,const GLchar* message, const void* userParam)
 {
 	if (type == GL_DEBUG_TYPE_ERROR || type == GL_DEBUG_TYPE_PERFORMANCE) {

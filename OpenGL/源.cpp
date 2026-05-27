@@ -22,11 +22,6 @@ int main()
 	};//在内存空间定义了一组数据，后续会发送到GPU中进行处理
 
 
-	unsigned int vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-
 
 	unsigned int index[] = {
 				0, 1, 2,
@@ -34,11 +29,16 @@ int main()
 
 	};
 
+	VertexArray mvao;
+	ElementsLayout layout;
+	layout.Push<float>(2);
 
 	VertexBuffer mvbo(position, 8 * sizeof(float));
-	glEnableVertexAttribArray(0);//启用顶点属性0
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);//设置顶点属性指针，告诉OpenGL如何解析顶点数据
 	IndexBuffer mibo(index, 6);
+
+	mvao.AddBuffer(mvbo, layout);
+	
+	mibo.Bind();
 
 	ShaderProgramResource source = ParseShader("res/shaders/BasicalShader.shader");
 
@@ -56,6 +56,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
 		glUniform4f(location, r, 0.3f, 0.8f, 1.0f);
+		mibo.Bind();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 		
         glfwSwapBuffers(window);
