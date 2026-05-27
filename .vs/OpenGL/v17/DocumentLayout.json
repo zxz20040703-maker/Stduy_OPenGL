@@ -35,8 +35,7 @@
               "ViewState": "AgIAACAAAAAAAAAAAAAowCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-05-27T09:33:37.044Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -48,8 +47,7 @@
               "RelativeToolTip": "OpenGL\\DrawCallData.cpp",
               "ViewState": "AgIAADUAAAAAAAAAAAAowE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-05-26T08:07:36.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T08:07:36.934Z"
             },
             {
               "$type": "Document",
@@ -59,7 +57,7 @@
               "RelativeDocumentMoniker": "OpenGL\\DrawCallData.h",
               "ToolTip": "D:\\\u65B0\u5EFA\u6587\u4EF6\u5939\\LessonProject\\Stduy_OPenGL\\OpenGL\\DrawCallData.h",
               "RelativeToolTip": "OpenGL\\DrawCallData.h",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAAEsAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAowEIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-05-27T09:23:44.317Z",
               "EditorCaption": ""
