@@ -1,1 +1,18 @@
+# Visual Studio
 **/.vs/
+
+# 编译输出
+Debug/
+Release/
+**/Debug/
+**/Release/
+*.exe
+*.pdb
+*.ilk
+*.log
+*.obj
+*.idb
+
+# 其他
+*.suo
+*.user

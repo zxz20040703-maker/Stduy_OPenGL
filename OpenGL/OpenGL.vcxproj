@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawCallData.h" />
+    <ClInclude Include="ecs.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shaderer.h" />
   </ItemGroup>

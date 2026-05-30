@@ -1,6 +1,6 @@
 #include"renderer.h"
 
-void __stdcall debugCallback(GLenum source, GLenum type, GLuint id,GLenum severity, GLsizei length,const GLchar* message, const void* userParam)
+static void __stdcall debugCallback(GLenum source, GLenum type, GLuint id,GLenum severity, GLsizei length,const GLchar* message, const void* userParam)
 {
 	if (type == GL_DEBUG_TYPE_ERROR || type == GL_DEBUG_TYPE_PERFORMANCE) {
 		std::cerr << "OpenGL Debug Message:" << std::endl;
@@ -54,3 +54,14 @@ void  GLInit(GLFWwindow* & window)
 	
 }
 
+void Renderer::Draw(const VertexArray& vao , const Shader& shader , const IndexBuffer& ibo) const
+{
+	vao.Bind();
+	shader.Bind();
+
+	glDrawElements(GL_TRIANGLES, ibo.GetCount() , GL_UNSIGNED_INT , nullptr);
+}
+void Renderer::Clear(const GLbitfield& mask) const noexcept
+{
+	glClear(mask);
+}

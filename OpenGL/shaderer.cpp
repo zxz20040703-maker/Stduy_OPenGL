@@ -1,9 +1,10 @@
 #include"shaderer.h"
+#include<sstream>
+#include<fstream>
 
 
 
-
- ShaderProgramResource ParseShader(std::string filePath)
+ShaderProgramResource  Shader:: ParseShader(std::string filePath)
 {
 	enum class ShaderType
 	{
@@ -42,7 +43,7 @@
 	}
 	return { ss[0].str(), ss[1].str() };
 }
- unsigned int CompileShader(unsigned int type, const std::string& source)
+ unsigned int Shader::CompileShader(unsigned int type, const std::string& source)
 {
 	unsigned int id = glCreateShader(type);//通过glCreateShader函数创建一个新对象，返回一个唯一的id
 	const char* src = source.c_str();
@@ -68,7 +69,7 @@
 
 }
 
- int CreatShader(const std::string& vertexShader, const std::string& fragmentShader)
+ int Shader::CreatShader(const std::string& vertexShader, const std::string& fragmentShader)
 {
 	unsigned int program = glCreateProgram();
 	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);

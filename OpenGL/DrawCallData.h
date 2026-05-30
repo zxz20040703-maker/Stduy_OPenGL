@@ -46,13 +46,12 @@ public :
 	IndexBuffer(const unsigned int* data, unsigned int count);
 	~IndexBuffer();
 
-	void Bind();
-	void Unbind();
-
+	void Bind() const;
+	void Unbind() const;
+	__inline size_t GetCount() const{
+		return m_Count;
+	}
 };
-
-
-
 class ElementsLayout {
 
 private:
@@ -103,14 +102,16 @@ public:
 	~VertexArray();
 
 	VertexArray(VertexArray&&) = delete;
-	VertexArray& operator=( VertexArray&&)=delete;
+	VertexArray& operator=( VertexArray&&)=default;
 
 	VertexArray(const VertexArray&) = delete;
 	VertexArray& operator=(const VertexArray&) = delete;
 
-	void Bind();
-	void Unbind();
+	void Bind() const;
+	void Unbind() const;
 	void AddBuffer(const VertexBuffer& vbo,const ElementsLayout& layout);
 };
 
+class Martial {
 
+};

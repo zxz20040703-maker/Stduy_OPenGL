@@ -2,20 +2,25 @@
 #include"renderer.h"
 #include"shaderer.h"
 #include"DrawCallData.h"
+#include<thread>
+#include "entt/entt.hpp"  
 
-int main()
-{
+int Render() {
+#pragma region Render
+
+
+
 	GLFWwindow* window = nullptr;
-	 GLInit(window);
+	GLInit(window);
 
-	if(window == nullptr)
+	if (window == nullptr)
 		return -1;
 
 	glfwSwapInterval(1);
 
-    float position[] = {
-        -0.5f, -0.5f,
-         0.5f,  -0.5f,
+	float position[] = {
+		-0.5f, -0.5f,
+		 0.5f,  -0.5f,
 		 0.5f, 0.5f,
 		-0.5f, 0.5f
 
@@ -30,43 +35,55 @@ int main()
 	};
 
 	VertexArray mvao;
+	mvao.Bind();
 	ElementsLayout layout;
 	layout.Push<float>(2);
 
 	VertexBuffer mvbo(position, 8 * sizeof(float));
-	IndexBuffer mibo(index, 6);
+	
 
 	mvao.AddBuffer(mvbo, layout);
-	
+	IndexBuffer mibo(index, 6);
 	mibo.Bind();
 
-	ShaderProgramResource source = ParseShader("res/shaders/BasicalShader.shader");
+	Shader shader("res/shaders/BasicalShader.shader");
+	shader.Bind();
 
-	unsigned int shader = CreatShader(source.VertexShader ,source.FragmentShader);
-	glUseProgram(shader);
-	std::cout << source.FragmentShader;
-
-	int location = glGetUniformLocation(shader, "u_Color"); 
+	const int location = shader.GetUniformLocation("u_Color");
 	float r = 0.0f;
 
-	
-    while (!glfwWindowShouldClose(window))
-    {
-		
-        glClear(GL_COLOR_BUFFER_BIT);
+	mvao.Unbind();
+	mibo.Unbind();
 
+	Renderer mRender;
+	while (!glfwWindowShouldClose(window))
+	{
+
+		mRender.Clear(GL_COLOR_BUFFER_BIT);
+	
 		glUniform4f(location, r, 0.3f, 0.8f, 1.0f);
-		mibo.Bind();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-		
-        glfwSwapBuffers(window);
+	
+		mRender.Draw(mvao, shader, mibo);
+		glfwSwapBuffers(window);
 
 		if (r > 1.0f)r = 0.0f;
-		  glfwPollEvents();
-		  r += 0.05f;
-    }
+		glfwPollEvents();
+		r += 0.05f;
+	}
 
-	glDeleteProgram(shader);
 	glfwTerminate();//终止GLFW库，清理资源
-    return 0;
+	return 0;
+#pragma endregion
+}
+int GameLog() {
+	//基于ecs
+	return 1;
+}
+
+int main()
+{
+	std::thread enderThread(Render);
+	std::thread gameLogThread(GameLog);
+	enderThread.join();
+	gameLogThread.join();
 }
