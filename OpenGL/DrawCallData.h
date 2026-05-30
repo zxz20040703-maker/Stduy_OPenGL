@@ -3,6 +3,7 @@
 #include<iostream>
 #include<GL/glew.h>
 #include <GLFW/glfw3.h>
+#include"stb_image.h"
 
 struct Element
 {
@@ -114,4 +115,18 @@ public:
 
 class Martial {
 
+};
+class Texture {
+private :
+	const char* texturePath;
+	 unsigned char* m_localBuffer;
+	unsigned int m_RendererID;
+	 int width, height , bpp;
+
+public:
+	Texture(const std::string& path);
+	void constexpr Bind(unsigned int slot = 0) const;
+	void constexpr Unbind() const;
+
+	unsigned int constexpr __inline GetID() const { return m_RendererID; }
 };

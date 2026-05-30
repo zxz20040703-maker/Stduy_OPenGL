@@ -134,6 +134,7 @@
     <ClCompile Include="DrawCallData.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shaderer.cpp" />
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="ecs.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shaderer.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

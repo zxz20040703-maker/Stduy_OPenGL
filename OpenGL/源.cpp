@@ -34,6 +34,8 @@ int Render() {
 
 	};
 
+	
+
 	VertexArray mvao;
 	mvao.Bind();
 	ElementsLayout layout;
@@ -48,6 +50,9 @@ int Render() {
 
 	Shader shader("res/shaders/BasicalShader.shader");
 	shader.Bind();
+
+	Texture mTexture("res/Textures/test1.png");
+	mTexture.Bind();
 
 	const int location = shader.GetUniformLocation("u_Color");
 	float r = 0.0f;

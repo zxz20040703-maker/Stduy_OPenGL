@@ -77,3 +77,39 @@ void VertexArray::AddBuffer(const VertexBuffer& vbo  ,const ElementsLayout& layo
 	}
 
 }
+
+Texture::Texture(const std::string& path)
+	: texturePath(path.c_str()), m_localBuffer(nullptr), m_RendererID(0), width(0), height(0), bpp(0)
+{
+	stbi_set_flip_vertically_on_load(1);
+	glGenBuffers(1, &m_RendererID);
+	glBindBuffer(GL_TEXTURE_2D, m_RendererID);
+
+	m_localBuffer = stbi_load(texturePath, &width, &height, &bpp, 4);
+	glTextureParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR);
+	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTextureParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glTexImage2D(m_RendererID, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_localBuffer);
+	glBindTexture(GL_TEXTURE_2D, m_RendererID);
+
+}
+
+void Texture ::Bind(unsigned int slot) const
+{
+	glActiveTexture(GL_TEXTURE0 + slot);
+	glBindTexture(GL_TEXTURE_2D, m_RendererID);
+}
+
+Texture::~Texture()
+{
+	glDeleteBuffers(1, &m_RendererID);
+	if (m_localBuffer)
+		stbi_image_free(m_localBuffer);
+}
+
+void Texture::Unbind() const
+{
+	glBindTexture(GL_TEXTURE_2D ,0);
+}
